@@ -1,9 +1,12 @@
 name: Daily Auto Commit
 
+permissions:
+  contents: write
+
 on:
   schedule:
-    - cron: "30 4 * * *"   # runs daily at 04:30 UTC (10:00 AM IST)
-  workflow_dispatch:       # allows manual trigger button
+    - cron: "35 4 * * *"   # runs daily at fixed time
+  workflow_dispatch:
 
 jobs:
   auto-commit:
@@ -19,7 +22,7 @@ jobs:
           git config user.email "23f1002264@ds.study.iitm.ac.in"
 
       - name: Step using email 23f1002264@ds.study.iitm.ac.in
-        run: echo "Workflow step with required email"
+        run: echo "Required step present"
 
       - name: Make daily change (guaranteed)
         run: |

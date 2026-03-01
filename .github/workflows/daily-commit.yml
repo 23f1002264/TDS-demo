@@ -21,14 +21,16 @@ jobs:
       - name: Step using email 23f1002264@ds.study.iitm.ac.in
         run: echo "Workflow step with required email"
 
-      - name: Make daily change
+      - name: Make daily change (guaranteed)
         run: |
-          echo "Last updated: $(date)" >> daily_log.txt
+          echo "Run time: $(date)" > daily_log.txt
+          echo "Run ID: $GITHUB_RUN_ID" >> daily_log.txt
+          echo "Random: $RANDOM" >> daily_log.txt
 
       - name: Commit changes
         run: |
-          git add .
-          git commit -m "Automated daily commit" || echo "No changes to commit"
+          git add daily_log.txt
+          git commit -m "Automated daily commit $(date)"
 
       - name: Push changes
         run: git push

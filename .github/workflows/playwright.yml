@@ -1,0 +1,26 @@
+name: Playwright Table QA
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Run Playwright Scraper - 23f1002264@ds.study.iitm.ac.in
+        run: python scrape_tables.py
